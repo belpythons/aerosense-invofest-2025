@@ -1,56 +1,76 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Wind, Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useState } from "react";
+import { Wind, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export function HeaderNav() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  const isActive = (path: string) => pathname === path
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center">
-              <Wind className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                alt="AeroSense Logo"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
             </div>
-            <span className="text-xl font-bold">AeroSense</span>
+            <span className="text-xl font-bold">
+              <span className="text-emerald-500">Aero</span>
+              <span className="text-slate-700 dark:text-slate-300">Sense</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-2">
-            <Link 
-              href="/about" 
+            <Link
+              href="/"
               className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
-                isActive('/about') 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'hover:bg-primary hover:text-primary-foreground'
+                isActive("/")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary hover:text-primary-foreground"
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                isActive("/about")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary hover:text-primary-foreground"
               }`}
             >
               Tentang Kami
             </Link>
-            <Link 
-              href="/news" 
+            <Link
+              href="/news"
               className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
-                isActive('/news') 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'hover:bg-primary hover:text-primary-foreground'
+                isActive("/news")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary hover:text-primary-foreground"
               }`}
             >
               Ruang Berita
             </Link>
-            <Link 
-              href="/contribute" 
+            <Link
+              href="/contribute"
               className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
-                isActive('/contribute') 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'hover:bg-primary hover:text-primary-foreground'
+                isActive("/contribute")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary hover:text-primary-foreground"
               }`}
             >
               Aksi & Kontribusi
@@ -64,7 +84,11 @@ export function HeaderNav() {
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </Button>
         </div>
 
@@ -74,9 +98,9 @@ export function HeaderNav() {
             <Link
               href="/about"
               className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
-                isActive('/about')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+                isActive("/about")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -85,9 +109,9 @@ export function HeaderNav() {
             <Link
               href="/news"
               className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
-                isActive('/news')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+                isActive("/news")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -96,9 +120,9 @@ export function HeaderNav() {
             <Link
               href="/contribute"
               className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
-                isActive('/contribute')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+                isActive("/contribute")
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -108,5 +132,5 @@ export function HeaderNav() {
         )}
       </div>
     </nav>
-  )
+  );
 }
