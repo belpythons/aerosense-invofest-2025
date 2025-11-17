@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { Wind, Target, TrendingUp, Award, Users, Globe2, Heart, Leaf, Shield, Droplet } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import Link from 'next/link'
 import { HeaderNav } from '@/components/header-nav'
 import { Footer } from '@/components/footer'
+import { CTASection } from '@/components/cta-section'
 
 export default function AboutPage() {
   const [stats, setStats] = useState({
@@ -261,35 +260,15 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="/community-people-together-unity.jpg"
-            alt="Join the Movement"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-600/95 to-emerald-600/95" />
-        </div>
-        <div className="relative max-w-4xl mx-auto text-center text-white">
-          <Heart className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Bergabunglah dengan Gerakan</h2>
-          <p className="text-xl mb-8 opacity-90 leading-relaxed">
-            Bantu kami membangun masa depan yang lebih bersih dan sehat untuk semua orang. Mulai pantau kualitas udara Anda hari ini.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#cities">
-              <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-slate-100">
-                Mulai Sekarang
-              </Button>
-            </Link>
-            <Link href="/news">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Baca Blog Kami
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTASection
+        title="Bergabunglah dengan Gerakan"
+        description="Bantu kami membangun masa depan yang lebih bersih dan sehat untuk semua orang. Mulai pantau kualitas udara Anda hari ini."
+        primaryButtonText="Mulai Sekarang"
+        primaryButtonLink="/#cities"
+        secondaryButtonText="Baca Blog Kami"
+        secondaryButtonLink="/news"
+        backgroundImage="/community-people-together-unity.jpg"
+      />
 
       <Footer />
     </div>

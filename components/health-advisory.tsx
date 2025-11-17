@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/card'
 import { Heart, Users, Baby, AlertCircle, Dumbbell, Clock, Cast as Mask } from 'lucide-react'
 
@@ -11,6 +11,18 @@ interface HealthAdvisoryProps {
 
 export function HealthAdvisory({ aqi, city }: HealthAdvisoryProps) {
   const [activeTab, setActiveTab] = useState<'general' | 'sensitive' | 'elderly'>('general')
+
+  useEffect(() => {
+    const savedTab = localStorage.getItem('healthAdvisoryTab')
+    if (savedTab && (savedTab === 'general' || savedTab === 'sensitive' || savedTab === 'elderly')) {
+      setActiveTab(savedTab)
+    }
+  }, [])
+
+  const handleTabChange = (tab: 'general' | 'sensitive' | 'elderly') => {
+    setActiveTab(tab)
+    localStorage.setItem('healthAdvisoryTab', tab)
+  }
 
   const getAdvice = (group: 'general' | 'sensitive' | 'elderly') => {
     const adviceMap = {
@@ -74,7 +86,7 @@ export function HealthAdvisory({ aqi, city }: HealthAdvisoryProps) {
           {(['general', 'sensitive', 'elderly'] as const).map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => handleTabChange(tab)}
               className={`px-4 py-3 font-medium text-sm transition-colors border-b-2 -mb-[2px] ${
                 activeTab === tab
                   ? 'border-primary text-foreground'

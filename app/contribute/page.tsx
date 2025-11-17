@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { HeaderNav } from '@/components/header-nav'
 import { Footer } from '@/components/footer'
+import { CTASection } from '@/components/cta-section'
 
 export default function ContributePage() {
   const sections = [
@@ -140,31 +141,15 @@ export default function ContributePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative py-32 px-6 overflow-hidden">
-          <div className="absolute inset-0">
-            <img 
-              src="/volunteers-helping-environment-community.jpg"
-              alt="Make a Difference"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-600/95 to-emerald-600/95" />
-          </div>
-          <div className="relative max-w-4xl mx-auto text-center text-white">
-            <Heart className="w-16 h-16 mx-auto mb-6" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Siap Membuat Perbedaan?</h2>
-            <p className="text-xl mb-8 opacity-90 leading-relaxed">
-              Mulai perjalanan Anda untuk berkontribusi pada udara yang lebih bersih hari ini. Setiap kontribusi membuat dampak nyata.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white text-teal-600 hover:bg-slate-100">
-                Daftar Sebagai Kontributor
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Hubungi Kami
-              </Button>
-            </div>
-          </div>
-        </section>
+        <CTASection
+          title="Siap Membuat Perbedaan?"
+          description="Mulai perjalanan Anda untuk berkontribusi pada udara yang lebih bersih hari ini. Setiap kontribusi membuat dampak nyata."
+          primaryButtonText="Daftar Sebagai Kontributor"
+          primaryButtonLink="/contribute"
+          secondaryButtonText="Hubungi Kami"
+          secondaryButtonLink="/contact"
+          backgroundImage="/volunteers-helping-environment-community.jpg"
+        />
       </div>
 
       <Footer />

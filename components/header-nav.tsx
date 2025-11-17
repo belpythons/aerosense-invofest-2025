@@ -4,9 +4,13 @@ import { useState } from 'react'
 import { Wind, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function HeaderNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (path: string) => pathname === path
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-border">
@@ -20,17 +24,35 @@ export function HeaderNav() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/world-map" className="text-sm font-medium hover:text-teal-600 transition-colors">
-              Peta Kualitas Udara Dunia
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-teal-600 transition-colors">
+          <div className="hidden md:flex items-center gap-2">
+            <Link 
+              href="/about" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                isActive('/about') 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'hover:bg-primary hover:text-primary-foreground'
+              }`}
+            >
               Tentang Kami
             </Link>
-            <Link href="/news" className="text-sm font-medium hover:text-teal-600 transition-colors">
+            <Link 
+              href="/news" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                isActive('/news') 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'hover:bg-primary hover:text-primary-foreground'
+              }`}
+            >
               Ruang Berita
             </Link>
-            <Link href="/contribute" className="text-sm font-medium hover:text-teal-600 transition-colors">
+            <Link 
+              href="/contribute" 
+              className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                isActive('/contribute') 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'hover:bg-primary hover:text-primary-foreground'
+              }`}
+            >
               Aksi & Kontribusi
             </Link>
           </div>
@@ -50,29 +72,34 @@ export function HeaderNav() {
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-2">
             <Link
-              href="/world-map"
-              className="block py-2 px-4 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Peta Kualitas Udara Dunia
-            </Link>
-            <Link
               href="/about"
-              className="block py-2 px-4 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
+                isActive('/about')
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Tentang Kami
             </Link>
             <Link
               href="/news"
-              className="block py-2 px-4 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
+                isActive('/news')
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Ruang Berita
             </Link>
             <Link
               href="/contribute"
-              className="block py-2 px-4 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className={`block py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
+                isActive('/contribute')
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Aksi & Kontribusi

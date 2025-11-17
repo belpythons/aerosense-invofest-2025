@@ -1,14 +1,15 @@
 'use client'
 
-import { getArticle, getRecentArticles } from '@/lib/articles'
+import { getArticle } from '@/lib/articles'
 import { ArticleAQIDisplay } from '@/components/article-aqi-display'
 import { PollutantsDisplay } from '@/components/pollutants-display'
 import { CommentsSection } from '@/components/comments-section'
 import { RecentArticlesWidget } from '@/components/recent-articles-widget'
 import { RelatedArticlesWidget } from '@/components/related-articles-widget'
+import { HeaderNav } from '@/components/header-nav'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -21,7 +22,8 @@ export default async function ArticlePage({ params }: PageProps) {
   if (!article) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-6 py-12">
+        <HeaderNav />
+        <div className="max-w-6xl mx-auto px-6 py-32">
           <h1 className="text-3xl font-bold mb-4">Article not found</h1>
           <Link href="/">
             <Button variant="outline" className="gap-2">
@@ -36,20 +38,9 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b border-border sticky top-0 z-40 bg-background/95 backdrop-blur">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ChevronLeft className="w-4 h-4" />
-              Back
-            </Button>
-          </Link>
-          <span className="text-sm text-muted-foreground">News Article</span>
-        </div>
-      </nav>
+      <HeaderNav />
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
+      <main className="max-w-6xl mx-auto px-6 pt-32 pb-12">
         {/* Header */}
         <div className="mb-8">
           <div className="mb-4">
@@ -59,7 +50,7 @@ export default async function ArticlePage({ params }: PageProps) {
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-muted-foreground text-sm">
             <span>By {article.author}</span>
             <span className="hidden sm:inline">•</span>
-            <span>{new Date(article.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            <span>{new Date(article.date).toLocaleDateString('id-ID', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
           </div>
         </div>
 

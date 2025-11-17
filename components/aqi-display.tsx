@@ -72,14 +72,30 @@ export function AQIDisplay({ city, aqi, trend, trendValue }: AQIDisplayProps) {
 
           {/* Trend Indicator */}
           <div className="flex items-center justify-center gap-2">
-            {trend === 'up' && <ArrowUp className="w-4 h-4 text-red-500" />}
-            {trend === 'down' && <ArrowDown className="w-4 h-4 text-emerald-500" />}
-            {trend === 'stable' && <div className="w-4 h-4 text-gray-500">—</div>}
-            <span className="text-xs text-muted-foreground">
-              {trend === 'up' && 'Memburuk'}
-              {trend === 'down' && 'Membaik'}
-              {trend === 'stable' && 'Stabil'} ({trendValue}%)
-            </span>
+            {trend === 'up' && (
+              <>
+                <ArrowUp className="w-4 h-4 text-red-500" />
+                <span className="text-xs text-muted-foreground">
+                  Memburuk <span className="text-red-500 font-medium">({trendValue}%)</span>
+                </span>
+              </>
+            )}
+            {trend === 'down' && (
+              <>
+                <ArrowDown className="w-4 h-4 text-emerald-500" />
+                <span className="text-xs text-muted-foreground">
+                  Membaik <span className="text-emerald-500 font-medium">({trendValue}%)</span>
+                </span>
+              </>
+            )}
+            {trend === 'stable' && (
+              <>
+                <div className="w-4 h-4 text-gray-500">—</div>
+                <span className="text-xs text-muted-foreground">
+                  Stabil ({trendValue}%)
+                </span>
+              </>
+            )}
           </div>
 
           {/* Last Updated */}
