@@ -1,36 +1,36 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { getRecentArticles } from '@/lib/articles'
-import type { Article } from '@/lib/articles'
-import { HeaderNav } from '@/components/header-nav'
-import { Footer } from '@/components/footer'
+import Link from "next/link";
+import Image from "next/image";
+import { getRecentArticles } from "@/lib/articles";
+import type { Article } from "@/lib/articles";
+import { HeaderNav } from "@/components/header-nav";
+import { Footer } from "@/components/footer";
 
-const getAqiColor = (category: Article['aqiCategory']) => {
+const getAqiColor = (category: Article["aqiCategory"]) => {
   const colors = {
-    good: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-    moderate: 'bg-yellow-50 border-yellow-200 text-yellow-700',
-    'unhealthy-for-sensitive': 'bg-orange-50 border-orange-200 text-orange-700',
-    unhealthy: 'bg-red-50 border-red-200 text-red-700',
-    hazardous: 'bg-purple-50 border-purple-200 text-purple-700',
-  }
-  return colors[category]
-}
+    good: "bg-emerald-50 border-emerald-200 text-emerald-700",
+    moderate: "bg-yellow-50 border-yellow-200 text-yellow-700",
+    "unhealthy-for-sensitive": "bg-orange-50 border-orange-200 text-orange-700",
+    unhealthy: "bg-red-50 border-red-200 text-red-700",
+    hazardous: "bg-purple-50 border-purple-200 text-purple-700",
+  };
+  return colors[category];
+};
 
-const getCategoryLabel = (category: Article['aqiCategory']) => {
+const getCategoryLabel = (category: Article["aqiCategory"]) => {
   const labels = {
-    good: 'Baik',
-    moderate: 'Sedang',
-    'unhealthy-for-sensitive': 'Tidak Sehat untuk Sensitif',
-    unhealthy: 'Tidak Sehat',
-    hazardous: 'Berbahaya',
-  }
-  return labels[category]
-}
+    good: "Baik",
+    moderate: "Sedang",
+    "unhealthy-for-sensitive": "Tidak Sehat untuk Sensitif",
+    unhealthy: "Tidak Sehat",
+    hazardous: "Berbahaya",
+  };
+  return labels[category];
+};
 
 export default function NewsPage() {
-  const articles = getRecentArticles(100)
+  const articles = getRecentArticles(100);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-slate-50">
@@ -39,9 +39,12 @@ export default function NewsPage() {
       {/* Header */}
       <div className="pt-20 border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-          <h1 className="font-sans text-4xl font-bold text-teal-900">Berita Kualitas Udara</h1>
+          <h1 className="font-sans text-4xl font-bold text-black">
+            Berita Kualitas Udara
+          </h1>
           <p className="mt-2 text-lg text-slate-600">
-            Pembaruan terbaru tentang kualitas udara di kota-kota Kalimantan Timur
+            Pembaruan terbaru tentang kualitas udara di kota-kota Kalimantan
+            Timur
           </p>
         </div>
       </div>
@@ -67,14 +70,20 @@ export default function NewsPage() {
               )}
 
               {/* AQI Badge */}
-              <div className={`border-b ${getAqiColor(article.aqiCategory)} px-4 py-3`}>
+              <div
+                className={`border-b ${getAqiColor(
+                  article.aqiCategory
+                )} px-4 py-3`}
+              >
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-semibold">Skor AQI</p>
                     <p className="text-2xl font-bold">{article.aqiScore}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-medium uppercase">{getCategoryLabel(article.aqiCategory)}</p>
+                    <p className="text-xs font-medium uppercase">
+                      {getCategoryLabel(article.aqiCategory)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -83,8 +92,12 @@ export default function NewsPage() {
               <div className="flex flex-1 flex-col p-4">
                 {/* Location & Date */}
                 <div className="mb-3 flex items-center justify-between text-xs text-slate-500">
-                  <span className="font-medium text-teal-700">{article.location}</span>
-                  <span>{new Date(article.date).toLocaleDateString('id-ID')}</span>
+                  <span className="font-medium text-teal-700">
+                    {article.location}
+                  </span>
+                  <span>
+                    {new Date(article.date).toLocaleDateString("id-ID")}
+                  </span>
                 </div>
 
                 {/* Title */}
@@ -93,7 +106,9 @@ export default function NewsPage() {
                 </h2>
 
                 {/* Excerpt */}
-                <p className="mb-4 flex-1 text-sm text-slate-600 line-clamp-2">{article.excerpt}</p>
+                <p className="mb-4 flex-1 text-sm text-slate-600 line-clamp-2">
+                  {article.excerpt}
+                </p>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2">
@@ -119,7 +134,9 @@ export default function NewsPage() {
         {/* Empty State */}
         {articles.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20">
-            <p className="text-lg text-slate-600">Tidak ada artikel ditemukan</p>
+            <p className="text-lg text-slate-600">
+              Tidak ada artikel ditemukan
+            </p>
           </div>
         )}
       </div>
@@ -127,5 +144,5 @@ export default function NewsPage() {
       {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }
