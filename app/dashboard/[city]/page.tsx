@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation'
 import { AQIDisplay } from '@/components/aqi-display'
 import { WeatherIntegration } from '@/components/weather-integration'
 import { PollutantBreakdown } from '@/components/pollutant-breakdown'
-import { CityComparisonTable } from '@/components/city-comparison-table'
 import { HealthAdvisory } from '@/components/health-advisory'
 import { DataVisualization } from '@/components/data-visualization'
 import { HeaderNav } from '@/components/header-nav'
@@ -99,9 +98,6 @@ export default function DashboardPage() {
           <p className="text-muted-foreground">Pemantauan real-time dan rekomendasi kesehatan</p>
         </div>
 
-        <div>
-          <CityComparisonTable cities={allCitiesData} onViewDetails={handleViewDetails} />
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <AQIDisplay city={cityName} aqi={data.aqi} trend={data.trend} trendValue={data.trendValue} />
