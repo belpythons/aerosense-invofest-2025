@@ -1,5 +1,6 @@
-import { Wind, Mail, MapPin, Phone } from 'lucide-react'
-import Link from 'next/link'
+import { Wind, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -9,13 +10,24 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                <Wind className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-lg  flex items-center justify-center">
+                {/* <Wind className="w-6 h-6 text-white" /> */}
+                <Image
+                  src="/logo-2.png"
+                  alt="AeroSense Logo"
+                  width={60}
+                  height={60}
+                  className="rounded-lg"
+                />
               </div>
-              <span className="text-xl font-bold">AeroSense</span>
+              <span className="text-xl font-bold">
+                <span className="text-emerald-500">Aero</span>
+                <span className="text-white dark:text-slate-300">Sense</span>
+              </span>
             </div>
             <p className="text-sm opacity-90 leading-relaxed">
-              Menyediakan data kualitas udara real-time untuk masa depan yang lebih sehat dan bersih.
+              Menyediakan data kualitas udara real-time untuk masa depan yang
+              lebih sehat dan bersih.
             </p>
           </div>
 
@@ -24,22 +36,34 @@ export function Footer() {
             <h3 className="font-bold mb-4">Tautan Cepat</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/world-map" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="/world-map"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Peta Kualitas Udara
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="/about"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Tentang Kami
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="/news"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Ruang Berita
                 </Link>
               </li>
               <li>
-                <Link href="/contribute" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="/contribute"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Aksi & Kontribusi
                 </Link>
               </li>
@@ -51,22 +75,34 @@ export function Footer() {
             <h3 className="font-bold mb-4">Sumber Daya</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="#"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Dokumentasi API
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="#"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Panduan Pengguna
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="#"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Kebijakan Privasi
                 </Link>
               </li>
               <li>
-                <Link href="#" className="opacity-90 hover:opacity-100 transition-opacity">
+                <Link
+                  href="#"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
                   Syarat & Ketentuan
                 </Link>
               </li>
@@ -94,9 +130,11 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center text-sm opacity-90">
-          <p>&copy; {new Date().getFullYear()} AeroSense. Semua hak dilindungi.</p>
+          <p>
+            &copy; {new Date().getFullYear()} AeroSense. Semua hak dilindungi.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
